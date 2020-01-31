@@ -10,7 +10,29 @@ class Timer extends Component {
     };
   }
 
+
   //Your code here
+  // shouldComponentUpdate(nextProp, nextState) {
+  //   this.state.time == nextState.time ? false :  true
+  // }
+
+
+  // componentDidUpdate() {
+  //   this.timer.current.style.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
+  // }
+
+  componentDidUpdate() {
+    this.timer.current.style.color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (this.state.time === nextState.time) ? false : true
+    // if (this.state.time === nextState.time) {
+    //   return false
+    // }
+    // return true
+  }
+
 
   componentDidMount() {
     this.interval = setInterval(
@@ -24,7 +46,7 @@ class Timer extends Component {
   }
 
   render() {
-    const { time, color, logText } = this.state;
+    const { time, color, className, logText } = this.state;
     return (
       <section className="Timer" style={{ background: color }} ref={this.timer}>
         <h1>{time}</h1>
